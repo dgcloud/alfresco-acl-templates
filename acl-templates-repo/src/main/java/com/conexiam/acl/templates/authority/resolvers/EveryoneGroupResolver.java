@@ -6,6 +6,6 @@ import com.conexiam.acl.templates.authority.resolvers.AuthorityResolver;
 
 public class EveryoneGroupResolver implements AuthorityResolver {
     public String resolve(NodeRef nodeRef) {
-        return "GROUP_EVERYONE" ;
+        return "GROUP_EVERYONE";
     }
 }

@@ -3,13 +3,14 @@ package com.conexiam.acl.templates.service;
 import com.conexiam.acl.templates.exceptions.AclTemplateServiceException;
 import org.alfresco.repo.jscript.BaseScopableProcessorExtension;
 import org.alfresco.repo.jscript.ScriptNode;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 
 public class AclTemplateServiceScopedObject extends BaseScopableProcessorExtension {
 
-    static Logger logger = Logger.getLogger(AclTemplateServiceScopedObject.class);
+    private static final Logger logger = LoggerFactory.getLogger(AclTemplateServiceScopedObject.class);
 
     // Dependencies
     private AclTemplateServiceImpl aclTemplateService;

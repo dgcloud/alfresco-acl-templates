@@ -10,7 +10,8 @@ import org.alfresco.service.cmr.repository.*;
 import org.alfresco.service.cmr.search.ResultSet;
 import org.alfresco.service.cmr.search.SearchService;
 import org.alfresco.service.cmr.security.PermissionService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +31,7 @@ public class AclTemplateServiceImpl implements AclTemplateService {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    static Logger logger = Logger.getLogger(AclTemplateServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(AclTemplateServiceImpl.class);
 
     public void apply(String templateId, NodeRef nodeRef) throws AclTemplateServiceException {
         // Fetch the ACL template that corresponds to the templateId
@@ -59,8 +60,8 @@ public class AclTemplateServiceImpl implements AclTemplateService {
 
         // Find the JSON file with a name that matches the templateId by querying for the name
         // and the folder where ACL Templates live
-        String query = "+PATH:\"" + aclTemplateFolderPath + "/*\" +@cm\\:name:\"" + templateId + "\"";
-        ResultSet results = searchService.query(StoreRef.STORE_REF_WORKSPACE_SPACESSTORE, SearchService.LANGUAGE_LUCENE, query);
+        String query = "PATH:\"" + aclTemplateFolderPath + "/*\" AND cm:name:\"" + templateId + ".json\"";
+        ResultSet results = searchService.query(StoreRef.STORE_REF_WORKSPACE_SPACESSTORE, SearchService.LANGUAGE_FTS_ALFRESCO, query);
         if (results.length() <= 0) {
             throw new AclTemplateServiceException("ACL template not found: " + templateId);
         }

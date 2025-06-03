@@ -18,7 +18,7 @@
         <property name="description"><value>acl-templates-repo.folderBootstrap.description</value></property>
         <property name="fixesFromSchema"><value>0</value></property>
         <property name="fixesToSchema"><value>${version.schema}</value></property>
-        <property name="targetSchema"><value>15000</value></property>
+        <property name="targetSchema"><value>99000</value></property>
         <property name="importerBootstrap">
             <ref bean="spacesBootstrap" />
         </property>
